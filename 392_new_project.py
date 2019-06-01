@@ -55,6 +55,22 @@ print(f"The min profit is: ", '$' + format(max_profit_amount, ',.2f'))
 print(f"Found in order #:   {num_min_profit}")
 print(f"At index value:     {index_min_profit}\n")
 
+user_input_variable = input("Please enter an Order ID to locate: ")
 
+# Reestablish the variable csv_file
+csv_file = csv.DictReader(open(r"C:\Users\Michael\Downloads\Records.csv"))
+
+# For each in row in csv_file
+# If the row's Order ID matches the user input variable
+# Assigns the current rows Ship Date and Total Revenue to the appropriate variables
+for row in csv_file:
+    if row['Order ID'] == user_input_variable:
+        shipdate_input_variable = row['Ship Date']
+        revenue_input_variable = float(row['Total Revenue'])
+
+# Below prints out the variables and formats the revenue as a currency
+print(f"Order ID:           {user_input_variable}")
+print(f"Ship Date:          {shipdate_input_variable}")
+print("Total Revenue:     ", '$' + format(revenue_input_variable, ',.2f'))
 
 

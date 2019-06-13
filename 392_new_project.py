@@ -3,7 +3,8 @@ import csv
 
 def main():
     max_func()
-
+    min_func()
+    num_input()
 
 
 
@@ -53,62 +54,69 @@ def max_func():
 
 
 
+def min_func():
+    # Reestablish the variable csv_file
+    csv_file = csv.DictReader(open(r"C:\Users\Michael\Downloads\Records.csv"))
 
-# Reestablish the variable csv_file
-csv_file = csv.DictReader(open(r"C:\Users\Michael\Downloads\Records.csv"))
+    num_min_profit = int(0)
+    min_profit_counter = -1
+    #calls the value returned from the previous max function as it needs to use it for comparison
+    formin_max_profit_amount = max_func()
 
-num_min_profit = int(0)
-min_profit_counter = -1
-#calls the value returned from the previous max function as it needs to use it for comparison
-formin_max_profit_amount = max_func()
-
-for row in csv_file:
-    profit = float(row['Total Profit'])
-    min_profit_counter += 1
-
-    # Essentially the same as the min_profit_amount if block from above but...
-    # Uses the formin_max_profit_amount to only change the value if it is smaller than profit being iterated
-    if profit < formin_max_profit_amount:
-        formin_max_profit_amount = profit
-        num_min_profit = row["Order ID"]
-        index_min_profit = min_profit_counter
-
-# Below prints out the variables and formats the profit as a currency
-print(f"The min profit is: ", '$' + format(formin_max_profit_amount, ',.2f'))
-print(f"Found in order #:   {num_min_profit}")
-print(f"At index value:     {index_min_profit}\n")
-
-
-
-
-
-
-user_input_variable = input("Please enter an Order ID to locate: ")
-
-# Reestablish the variable csv_file
-csv_file = csv.DictReader(open(r"C:\Users\Michael\Downloads\Records.csv"))
-
-# Tries to execute the following block
-try:
-    # For each in row in csv_file
-    # If the row's Order ID matches the user input variable
-    # Assigns the current rows Ship Date and Total Revenue to the appropriate variables
     for row in csv_file:
-        if row['Order ID'] == user_input_variable:
-            shipdate_input_variable = row['Ship Date']
-            revenue_input_variable = float(row['Total Revenue'])
+        profit = float(row['Total Profit'])
+        min_profit_counter += 1
 
-    # Below prints out the variables and formats the revenue as a currency
-    print(f"Order ID:           {user_input_variable}")
-    print(f"Ship Date:          {shipdate_input_variable}")
-    print("Total Revenue:     ", '$' + format(revenue_input_variable, ',.2f'))
+        # Essentially the same as the min_profit_amount if block from above but...
+        # Uses the formin_max_profit_amount to only change the value if it is smaller than profit being iterated
+        if profit < formin_max_profit_amount:
+            formin_max_profit_amount = profit
+            num_min_profit = row["Order ID"]
+            index_min_profit = min_profit_counter
 
-# Looks for a NameError since if no Order ID is found it will then attempt
-# to print shipdate_input_variable which will not be assigned if Order Id is wrong
-# Warns the user exception occurs and continues
-except NameError:
-    print("You have entered an invalid Order ID")
-    pass
+    def print_min():
+        # Below prints out the variables and formats the profit as a currency
+        print(f"The min profit is: ", '$' + format(formin_max_profit_amount, ',.2f'))
+        print(f"Found in order #:   {num_min_profit}")
+        print(f"At index value:     {index_min_profit}\n")
+
+    print_min()
+
+
+
+
+
+def num_input():
+    user_input_variable = input("Please enter an Order ID to locate: ")
+
+    # Reestablish the variable csv_file
+    csv_file = csv.DictReader(open(r"C:\Users\Michael\Downloads\Records.csv"))
+
+    # Tries to execute the following block
+    try:
+        # For each in row in csv_file
+        # If the row's Order ID matches the user input variable
+        # Assigns the current rows Ship Date and Total Revenue to the appropriate variables
+        for row in csv_file:
+            if row['Order ID'] == user_input_variable:
+                shipdate_input_variable = row['Ship Date']
+                revenue_input_variable = float(row['Total Revenue'])
+
+        def print_input_num():
+            # Below prints out the variables and formats the revenue as a currency
+            print(f"Order ID:           {user_input_variable}")
+            print(f"Ship Date:          {shipdate_input_variable}")
+            print("Total Revenue:     ", '$' + format(revenue_input_variable, ',.2f'))
+
+
+    # Looks for a NameError since if no Order ID is found it will then attempt
+    # to print shipdate_input_variable which will not be assigned if Order Id is wrong
+    # Warns the user exception occurs and continues
+    except NameError:
+        print("You have entered an invalid Order ID")
+        pass
+
+    print_input_num()
 
 
 

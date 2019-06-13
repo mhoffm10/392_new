@@ -1,0 +1,55 @@
+
+
+import csv
+import pickle
+
+#part i.
+#creating a class to hold the three attributes
+class Order_ship_profit:
+    def __init__(self, order_id, ship_date, total_profit):
+        self.__order_id = order_id
+        self.__ship_date = ship_date
+        self.__total_profit = total_profit
+
+    #part ii.
+    #accessor methods only, and __str__ method
+    def get_order_id(self):
+        return self.__order_id
+    def get_ship_date(self):
+        return self.__ship_date
+    def get_total_profit(self):
+        return self.__total_profit
+
+    def __str__(self):
+        return "Order ID: "+self.__order_id+"\t"+"Ship Date: "+self.__ship_date+"\t"+"Total Profit: "+ self.__total_profit
+
+
+##From here, I could not figure out a working approach. I have some understanding
+    ##of pieces to include, but not enough to put them together without errors
+
+#part iii.
+#create 100 instances for the first 100 records in the dataset
+
+
+#part iv.
+#add 100 instances to list
+list_100 = []
+try:
+    with open(r"C:\Users\mh719_000\Desktop\Bus 392 py files\Records.csv", newline='') as c:
+        row_counter = 0
+        for row in c:
+            while row < 100:
+                #not finished
+                row_counter += 1
+except: 
+
+
+#serialize list to file
+    #I could not figure out pickling
+    #pickle
+
+#part v.
+#deserialize objects from file
+    #unpickling ?
+
+#display 10th object
